@@ -1,0 +1,19 @@
+php:
+  build: .
+  ports:
+   - "88:80"
+   - "8443:443"
+  volumes:
+   - ./www:/var/www/html
+  links:
+   - db
+db:
+  image: mysql:5.7
+  volumes:
+   - ./data/mysql:/var/lib/mysql
+  environment:
+   - MYSQL_DATABASE=wp_database
+   - MYSQL_ROOT_PASSWORD=iamgroot
+   - MYSQL_USER=wp_user
+   - MYSQL_PASSWORD=wp_passwd
+
